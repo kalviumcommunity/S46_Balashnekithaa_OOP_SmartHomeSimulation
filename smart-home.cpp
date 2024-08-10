@@ -16,7 +16,7 @@ class SmartLight{
             this->brightness = brightness;
         }
         void turnOn(){
-            this->isOn = false;
+            this->isOn = true;
             cout << "The light in " << this->room << " is now ON" << endl;
         }
         void turnOff(){
