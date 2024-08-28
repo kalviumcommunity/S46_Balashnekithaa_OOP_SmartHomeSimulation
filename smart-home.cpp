@@ -145,19 +145,46 @@ int main(){
     // livingRoomLight.adjustBrightness("medium");
     // livingRoomLight.displayStatus();
 
+    SmartLight* livingRoomLight = new SmartLight("Living Room");
+    livingRoomLight->turnOn();
+    livingRoomLight->changeColor("Blue");
+    livingRoomLight->adjustBrightness("medium");
+    livingRoomLight->displayStatus();
 
-    SmartLight roomLights[3] = {
-        SmartLight("Living Room"),
-        SmartLight("Bedroom"),
-        SmartLight("Kitchen")
-    };
+    delete livingRoomLight;
 
-    for(int i=0; i<3; i++){
-        roomLights[i].turnOn();
-        roomLights[i].changeColor("Warm White");
-        roomLights[i].adjustBrightness("medium");
-        roomLights[i].displayStatus();
-    }
+    Thermostat* livingRoomThermostat = new Thermostat("Living Room", 22.0);
+    livingRoomThermostat->displaySettings();
+    livingRoomThermostat->setTemperature(24.0);
+    livingRoomThermostat->turnHeatingOn();
+    livingRoomThermostat->displaySettings();
+
+    delete livingRoomThermostat;
+
+    SecuritySystem* homeSecurity = new SecuritySystem();
+    homeSecurity->displayStatus();
+    homeSecurity->armSystem();
+    homeSecurity->detectMotion();
+    homeSecurity->displayStatus();
+    homeSecurity->clearMotion();
+    homeSecurity->disarmSystem();
+    homeSecurity->displayStatus();
+
+    delete homeSecurity;
+
+
+    // SmartLight roomLights[3] = {
+    //     SmartLight("Living Room"),
+    //     SmartLight("Bedroom"),
+    //     SmartLight("Kitchen")
+    // };
+
+    // for(int i=0; i<3; i++){
+    //     roomLights[i].turnOn();
+    //     roomLights[i].changeColor("Warm White");
+    //     roomLights[i].adjustBrightness("medium");
+    //     roomLights[i].displayStatus();
+    // }
 
     // Thermostat livingRoomThermostat("Living Room", 22.0);
     // livingRoomThermostat.displaySettings();
