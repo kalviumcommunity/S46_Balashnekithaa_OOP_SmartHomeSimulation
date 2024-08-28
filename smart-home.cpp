@@ -139,7 +139,7 @@ public:
 
 
 int main(){
-    // SmartLight livingRoomLight("Living Room");
+    // SmartLight livingRoomLight("Dining Room");
     // livingRoomLight.turnOn();
     // livingRoomLight.changeColor("Blue");
     // livingRoomLight.adjustBrightness("medium");
