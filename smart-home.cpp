@@ -8,20 +8,31 @@ class SmartLight{
         bool isOn;
         string color;
         int brightness;
+
+        static int totalLights;
+        static int lightsOn;
+
     public:
         SmartLight(string room, bool state = false, string color = "White", int brightness = 1){
             this->room = room;
             this->isOn = state;
             this->color = color;
             this->brightness = brightness;
+            totalLights++;
         }
         void turnOn(){
-            this->isOn = true;
-            cout << "The light in " << this->room << " is now ON" << endl;
+            if(!this->isOn){
+                this->isOn = true;
+                lightsOn++;
+                cout << "The light in " << this->room << " is now ON" << endl;
+            }
         }
         void turnOff(){
-            this->isOn = false;
-            cout << "The light in " << this->room << " is now OFF." << endl;
+            if(this->isOn){
+                this->isOn = false;
+                lightsOn--;
+                cout << "The light in " << this->room << " is now OFF." << endl;
+            }
         }
         void changeColor(const string& newColor){
             this->color = newColor;
@@ -58,6 +69,9 @@ class SmartLight{
             default: cout << "UNKNOWN"; break;
         }
         cout << endl;
+        }
+        static void displayStaticStatus(){
+            cout << "Total Lights: " << totalLights << ", Lights On: " << lightsOn << endl;
         }
 };
 
@@ -138,6 +152,9 @@ public:
 };
 
 
+int SmartLight::totalLights = 0;
+int SmartLight::lightsOn = 0;
+
 int main(){
     // SmartLight livingRoomLight("Dining Room");
     // livingRoomLight.turnOn();
@@ -145,32 +162,48 @@ int main(){
     // livingRoomLight.adjustBrightness("medium");
     // livingRoomLight.displayStatus();
 
-    SmartLight* livingRoomLight = new SmartLight("Living Room");
-    livingRoomLight->turnOn();
-    livingRoomLight->changeColor("Blue");
-    livingRoomLight->adjustBrightness("medium");
-    livingRoomLight->displayStatus();
+    // SmartLight* livingRoomLight = new SmartLight("Living Room");
+    // livingRoomLight->turnOn();
+    // livingRoomLight->changeColor("Blue");
+    // livingRoomLight->adjustBrightness("medium");
+    // livingRoomLight->displayStatus();
 
-    delete livingRoomLight;
+    // delete livingRoomLight;
 
-    Thermostat* livingRoomThermostat = new Thermostat("Living Room", 22.0);
-    livingRoomThermostat->displaySettings();
-    livingRoomThermostat->setTemperature(24.0);
-    livingRoomThermostat->turnHeatingOn();
-    livingRoomThermostat->displaySettings();
+    // Thermostat* livingRoomThermostat = new Thermostat("Living Room", 22.0);
+    // livingRoomThermostat->displaySettings();
+    // livingRoomThermostat->setTemperature(24.0);
+    // livingRoomThermostat->turnHeatingOn();
+    // livingRoomThermostat->displaySettings();
 
-    delete livingRoomThermostat;
+    // delete livingRoomThermostat;
 
-    SecuritySystem* homeSecurity = new SecuritySystem();
-    homeSecurity->displayStatus();
-    homeSecurity->armSystem();
-    homeSecurity->detectMotion();
-    homeSecurity->displayStatus();
-    homeSecurity->clearMotion();
-    homeSecurity->disarmSystem();
-    homeSecurity->displayStatus();
+    // SecuritySystem* homeSecurity = new SecuritySystem();
+    // homeSecurity->displayStatus();
+    // homeSecurity->armSystem();
+    // homeSecurity->detectMotion();
+    // homeSecurity->displayStatus();
+    // homeSecurity->clearMotion();
+    // homeSecurity->disarmSystem();
+    // homeSecurity->displayStatus();
 
-    delete homeSecurity;
+    // delete homeSecurity;
+
+    SmartLight livingRoomLight("Living Room");
+    SmartLight kitchenLight("Kitchen");
+
+    livingRoomLight.turnOn();
+    livingRoomLight.displayStatus();
+
+    kitchenLight.turnOn();
+    kitchenLight.displayStatus();
+
+    SmartLight::displayStaticStatus();
+
+    kitchenLight.turnOff();
+    kitchenLight.displayStatus();
+
+    SmartLight::displayStaticStatus();
 
 
     // SmartLight roomLights[3] = {
