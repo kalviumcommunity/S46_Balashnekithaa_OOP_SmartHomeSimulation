@@ -70,6 +70,11 @@ class SmartLight{
         }
         cout << endl;
         }
+        static void resetLightCounters(){
+            totalLights = 0;
+            lightsOn = 0;
+            cout << "Light counters and energy consumption have been reset." << endl;
+        }
         static void displayStaticStatus(){
             cout << "Total Lights: " << totalLights << ", Lights On: " << lightsOn << endl;
         }
@@ -203,6 +208,9 @@ int main(){
     kitchenLight.turnOff();
     kitchenLight.displayStatus();
 
+    SmartLight::displayStaticStatus();
+
+    SmartLight::resetLightCounters();
     SmartLight::displayStaticStatus();
 
 
