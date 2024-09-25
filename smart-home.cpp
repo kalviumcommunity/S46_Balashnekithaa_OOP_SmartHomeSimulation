@@ -20,6 +20,42 @@ class SmartLight{
             this->brightness = brightness;
             totalLights++;
         }
+        // Showcasing Encpsulation
+        // Accessor for room
+        string getRoom() const{
+            return room;
+        }
+        // Mutator for room
+        void setRoom(const string& newRoom) {
+            room = newRoom;
+        }
+        // Accessor for isOn
+        bool getIsOn() const{
+            return isOn;
+        }
+        // Mutator for isOn
+        void setIsOn(bool state){
+            isOn = state;
+        }
+        // Accessor (getter) for color
+        string getColor() const {
+            return color;
+        }
+
+        // Mutator (setter) for color
+        void setColor(const string& newColor) {
+            color = newColor;
+        }
+
+        // Accessor (getter) for brightness
+        int getBrightness() const {
+            return brightness;
+        }
+
+        // Mutator (setter) for brightness
+        void setBrightness(int newBrightness) {
+            brightness = newBrightness;
+        }
         void turnOn(){
             if(!this->isOn){
                 this->isOn = true;
@@ -93,9 +129,14 @@ class Thermostat{
             this->isHeating = false;
             this->isCooling = false;
         }
+        // Accessor for temperature
+        double getTemperature() const{
+            return temperature;
+        }
+        // Mutator for temperature
         void setTemperature(double temp) {
-        this->temperature = temp;
-        cout << "The temperature in " << this->room << " is set to " << this->temperature << "°C." << endl;
+            temperature = temp;
+            cout << "The temperature in " << this->room << " is set to " << this->temperature << "°C." << endl;
         }
         void turnHeatingOn() {
         this->isHeating = true;
@@ -194,24 +235,24 @@ int main(){
 
     // delete homeSecurity;
 
-    SmartLight livingRoomLight("Living Room");
-    SmartLight kitchenLight("Kitchen");
+    // SmartLight livingRoomLight("Living Room");
+    // SmartLight kitchenLight("Kitchen");
 
-    livingRoomLight.turnOn();
-    livingRoomLight.displayStatus();
+    // livingRoomLight.turnOn();
+    // livingRoomLight.displayStatus();
 
-    kitchenLight.turnOn();
-    kitchenLight.displayStatus();
+    // kitchenLight.turnOn();
+    // kitchenLight.displayStatus();
 
-    SmartLight::displayStaticStatus();
+    // SmartLight::displayStaticStatus();
 
-    kitchenLight.turnOff();
-    kitchenLight.displayStatus();
+    // kitchenLight.turnOff();
+    // kitchenLight.displayStatus();
 
-    SmartLight::displayStaticStatus();
+    // SmartLight::displayStaticStatus();
 
-    SmartLight::resetLightCounters();
-    SmartLight::displayStaticStatus();
+    // SmartLight::resetLightCounters();
+    // SmartLight::displayStaticStatus();
 
 
     // SmartLight roomLights[3] = {
@@ -240,4 +281,22 @@ int main(){
     // homeSecurity.clearMotion();
     // homeSecurity.disarmSystem();
     // homeSecurity.displayStatus();
+
+
+    // ENCAPSULATION
+    SmartLight livingRoomLight("Living Room");
+    livingRoomLight.turnOn();
+    livingRoomLight.setColor("Blue");
+    livingRoomLight.setBrightness(2);
+    livingRoomLight.displayStatus();
+
+    Thermostat livingRoomThermostat("Living Room", 22.0);
+    livingRoomThermostat.displaySettings();
+    livingRoomThermostat.setTemperature(16.0);
+    livingRoomThermostat.turnHeatingOn();
+    livingRoomThermostat.displaySettings();
+
+
+    return 0;
+
 }
