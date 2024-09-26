@@ -56,6 +56,7 @@ class SmartLight{
         void setBrightness(int newBrightness) {
             brightness = newBrightness;
         }
+        // Public methods (Abstraction)
         void turnOn(){
             if(!this->isOn){
                 this->isOn = true;
@@ -134,6 +135,7 @@ class Thermostat{
             return temperature;
         }
         // Mutator for temperature
+        // Public Methods (Abstraction)
         void setTemperature(double temp) {
             temperature = temp;
             cout << "The temperature in " << this->room << " is set to " << this->temperature << "°C." << endl;
