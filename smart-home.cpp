@@ -13,6 +13,16 @@ class SmartLight{
         static int lightsOn;
 
     public:
+        // Default Constructor
+        SmartLight(){
+            this->room = "Unnamed Room";
+            this->isOn = false;
+            this->color = "White";
+            this->brightness = 1;
+            totalLights++;
+        }
+
+        // Parameterized constructor
         SmartLight(string room, bool state = false, string color = "White", int brightness = 1){
             this->room = room;
             this->isOn = state;
@@ -20,6 +30,14 @@ class SmartLight{
             this->brightness = brightness;
             totalLights++;
         }
+
+        // Destructor
+        ~SmartLight(){
+            totalLights--;
+            cout << "Destructor called for SmartLight in " << room << endl;
+        }
+
+
         // Showcasing Encpsulation
         // Accessor for room
         string getRoom() const{
@@ -286,17 +304,32 @@ int main(){
 
 
     // ENCAPSULATION
-    SmartLight livingRoomLight("Living Room");
-    livingRoomLight.turnOn();
-    livingRoomLight.setColor("Blue");
-    livingRoomLight.setBrightness(2);
+    // SmartLight livingRoomLight("Living Room");
+    // livingRoomLight.turnOn();
+    // livingRoomLight.setColor("Blue");
+    // livingRoomLight.setBrightness(2);
+    // livingRoomLight.displayStatus();
+
+    // Thermostat livingRoomThermostat("Living Room", 22.0);
+    // livingRoomThermostat.displaySettings();
+    // livingRoomThermostat.setTemperature(16.0);
+    // livingRoomThermostat.turnHeatingOn();
+    // livingRoomThermostat.displaySettings();
+
+
+    // Using Default Constructor
+    SmartLight defaultLight;
+    defaultLight.displayStatus();
+
+    // Using Parameterized Constructor
+    SmartLight livingRoomLight("Living Room", true, "Blue", 2);
     livingRoomLight.displayStatus();
 
-    Thermostat livingRoomThermostat("Living Room", 22.0);
-    livingRoomThermostat.displaySettings();
-    livingRoomThermostat.setTemperature(16.0);
-    livingRoomThermostat.turnHeatingOn();
-    livingRoomThermostat.displaySettings();
+    // Using Dynamic allocation
+    SmartLight* kitchenLight = new SmartLight("Kitchen", false, "Warm White", 3);
+    kitchenLight->turnOn();
+    kitchenLight->displayStatus();
+    delete kitchenLight;
 
 
     return 0;
